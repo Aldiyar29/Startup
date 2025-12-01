@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Local Task Kz</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Login/Signup Page -->
+    <div id="authPage" class="auth-container">
+        <div class="auth-card">
+            <div class="auth-header">
+                <h1 class="auth-title">Local Task Kz</h1>
+                <p class="auth-subtitle">Start posting tasks or earning money today</p>
+            </div>
+            
+            <div class="auth-tabs">
+                <button class="auth-tab active" id="loginTab">Login</button>
+                <button class="auth-tab" id="signupTab">Sign Up</button>
+            </div>
+            
+            <div class="auth-body">
+                <!-- Login Form -->
+                <form id="loginForm" class="auth-form active">
+                    <div class="form-group">
+                        <label class="form-label">Email</label>
+                        <input type="email" class="form-control" id="loginEmail" placeholder="your@email.com" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Password</label>
+                        <input type="password" class="form-control" id="loginPassword" placeholder="Enter your password" required>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 10px;">Login</button>
+                </form>
+                
+                <!-- Signup Form -->
+                <form id="signupForm" class="auth-form">
+                    <div class="form-group">
+                        <label class="form-label">Full Name</label>
+                        <input type="text" class="form-control" id="signupName" placeholder="John Smith" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Email</label>
+                        <input type="email" class="form-control" id="signupEmail" placeholder="john@example.com" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Phone</label>
+                        <input type="tel" class="form-control" id="signupPhone" placeholder="7701234567" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Password</label>
+                        <input type="password" class="form-control" id="signupPassword" placeholder="Create a password" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">I want to</label>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="userType" value="customer" checked> 
+                                Post tasks (Customer)
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="userType" value="worker"> 
+                                Complete tasks (Worker)
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 10px;">Create Account</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Main Dashboard (Initially Hidden) -->
+    <div id="dashboardPage" style="display: none;">
+        <header>
+            <div class="container nav-container">
+                <div class="logo">
+                    <i class="fas fa-tasks"></i>
+                    <span>Local Task Kz</span>
+                </div>
+                
+                <div class="nav-links">
+                    <a href="#" class="active" id="navDashboard">Dashboard</a>
+                    <a href="#" id="navMessages">Messages</a>
+                    <a href="#" id="navNotifications">Notifications</a>
+                    <a href="#" id="navProfile">Profile</a>
+                </div>
+                
+                <div class="user-info">
+                    <div class="user-avatar" id="userAvatar">U</div>
+                    <div>
+                        <div class="user-name" id="userName">User</div>
+                        <div class="user-role" id="userRole">Customer</div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        
+        <div class="main-content">
+            <aside class="sidebar">
+                <ul class="sidebar-menu">
+                    <li><a href="#" class="active" data-view="myTasks"><i class="fas fa-list-check"></i> <span>My Tasks</span></a></li>
+                    <li><a href="#" data-view="availableTasks"><i class="fas fa-search"></i> <span>Available Tasks</span></a></li>
+                    <li><a href="#" data-view="postTask"><i class="fas fa-plus-circle"></i> <span>Post New Task</span></a></li>
+                    <li><a href="#" data-view="reviews"><i class="fas fa-star"></i> <span>Reviews & Ratings</span></a></li>
+                    <li><a href="#" data-view="history"><i class="fas fa-history"></i> <span>Task History</span></a></li>
+                    <li><a href="#" data-view="settings"><i class="fas fa-cog"></i> <span>Settings</span></a></li>
+                </ul>
+                
+                <div class="sidebar-footer">
+                    <a href="#" class="logout-btn" id="logoutBtn">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Logout</span>
+                    </a>
+                </div>
+            </aside>
+            
+            <main class="dashboard-content">
+                <!-- Customer Dashboard -->
+                <div id="customerDashboard" style="display: none;">
+                    <div class="dashboard-header">
+                        <h1 class="dashboard-title">Customer Dashboard</h1>
+                        <button class="btn btn-primary" id="postTaskBtn">
+                            <i class="fas fa-plus"></i> Post New Task
+                        </button>
+                    </div>
+                    
+                    <div class="task-filters">
+                        <button class="filter-btn active" data-filter="all">All</button>
+                        <button class="filter-btn" data-filter="posted">Posted</button>
+                        <button class="filter-btn" data-filter="accepted">Accepted</button>
+                        <button class="filter-btn" data-filter="completed">Completed</button>
+                        <button class="filter-btn" data-filter="canceled">Canceled</button>
+                    </div>
+                    
+                    <div class="task-cards" id="customerTasks">
+                        <!-- Task cards will be loaded here -->
+                    </div>
+                </div>
+                
+                <!-- Worker Dashboard -->
+                <div id="workerDashboard" style="display: none;">
+                    <div class="dashboard-header">
+                        <h1 class="dashboard-title">Worker Dashboard</h1>
+                        <div class="user-info">
+                            <div class="user-avatar" id="workerAvatar">W</div>
+                            <div>
+                                <div class="user-name" id="workerName">Worker</div>
+                                <div class="user-role">Worker</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="task-filters">
+                        <button class="filter-btn active" data-filter="all">All</button>
+                        <button class="filter-btn" data-filter="posted">Available</button>
+                        <button class="filter-btn" data-filter="accepted">Accepted</button>
+                        <button class="filter-btn" data-filter="completed">Completed</button>
+                    </div>
+                    
+                    <div class="task-cards" id="workerTasks">
+                        <!-- Task cards will be loaded here -->
+                    </div>
+                </div>
+                
+                <!-- Post Task Form -->
+                <div id="postTaskView" style="display: none;">
+                    <div class="dashboard-header">
+                        <h1 class="dashboard-title">Create New Task</h1>
+                        <button class="btn btn-secondary" id="backToDashboardBtn">
+                            <i class="fas fa-arrow-left"></i> Back to Dashboard
+                        </button>
+                    </div>
+                    
+                    <div style="background-color: white; border-radius: 10px; padding: 30px;">
+                        <form id="newTaskForm">
+                            <div class="form-group">
+                                <label class="form-label">Task Title</label>
+                                <input type="text" class="form-control" id="taskTitle" placeholder="e.g., Help moving furniture" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Description</label>
+                                <textarea class="form-control" id="taskDescription" placeholder="Provide details about the task..." required></textarea>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Category</label>
+                                <select class="form-control" id="taskCategory" required>
+                                    <option value="">Select a category</option>
+                                    <option value="moving">Moving & Transport</option>
+                                    <option value="pets">Pet Care</option>
+                                    <option value="cleaning">Cleaning</option>
+                                    <option value="repair">Repair & Maintenance</option>
+                                    <option value="delivery">Delivery</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Payment ($)</label>
+                                <input type="number" class="form-control" id="taskPayment" min="0" step="0.01" placeholder="0.00" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Location</label>
+                                <input type="text" class="form-control" id="taskLocation" placeholder="123 Main St, City" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Scheduled Time</label>
+                                <input type="datetime-local" class="form-control" id="taskTime" required>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-plus"></i> Create Task
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                
+                <!-- Reviews & Ratings -->
+                <div id="reviewsView" style="display: none;">
+                    <div class="dashboard-header">
+                        <h1 class="dashboard-title">Reviews & Ratings</h1>
+                    </div>
+                    
+                    <div class="reviews-section" id="reviewsList">
+                        <!-- Reviews will be loaded here -->
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+    
+    <!-- Task Details Modal -->
+    <div id="taskDetailsModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="modalTaskTitle">Task Details</h2>
+                <button class="close-btn" id="closeModalBtn">&times;</button>
+            </div>
+            <div class="modal-body" id="modalTaskBody">
+                <!-- Task details will be loaded here -->
+            </div>
+        </div>
+    </div>
+    
+    <!-- Customer Review Modal -->
+    <div id="customerReviewModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Rate Worker</h2>
+                <button class="close-btn" id="closeCustomerReviewModalBtn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="customerReviewForm">
+                    <div class="form-group">
+                        <label class="form-label">Rate the worker</label>
+                        <div class="rating-stars" id="customerRatingStars">
+                            <i class="fas fa-star star" data-rating="1"></i>
+                            <i class="fas fa-star star" data-rating="2"></i>
+                            <i class="fas fa-star star" data-rating="3"></i>
+                            <i class="fas fa-star star" data-rating="4"></i>
+                            <i class="fas fa-star star" data-rating="5"></i>
+                        </div>
+                        <input type="hidden" id="customerSelectedRating" value="5">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Comment about the worker</label>
+                        <textarea class="form-control" id="customerReviewComment" placeholder="Share your experience with this worker..." rows="4" required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">Submit Review</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Worker Review Modal -->
+    <div id="reviewModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Leave a Review</h2>
+                <button class="close-btn" id="closeReviewModalBtn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="reviewForm">
+                    <div class="form-group">
+                        <label class="form-label">Rating</label>
+                        <div class="rating-stars" id="ratingStars">
+                            <i class="fas fa-star star" data-rating="1"></i>
+                            <i class="fas fa-star star" data-rating="2"></i>
+                            <i class="fas fa-star star" data-rating="3"></i>
+                            <i class="fas fa-star star" data-rating="4"></i>
+                            <i class="fas fa-star star" data-rating="5"></i>
+                        </div>
+                        <input type="hidden" id="selectedRating" value="5">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Comment</label>
+                        <textarea class="form-control" id="reviewComment" placeholder="Share your experience..." rows="4" required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">Submit Review</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
